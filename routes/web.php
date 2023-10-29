@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\GetDataController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// departements
+Route::get('/departements', [DepartementController::class, 'index'])->name('index_departements');
+Route::post('/departements', [DepartementController::class, 'store'])->name('store_departement');
+Route::put('/departements/{id}', [DepartementController::class, 'update'])->name('update_departement');
+Route::delete('/departements/{id}', [DepartementController::class, 'destroy'])->name('destroy_departement');
+
+
+Route::get('/getDepartements', [GetDataController::class, 'getDataDepartements']);
 
 require __DIR__.'/auth.php';
