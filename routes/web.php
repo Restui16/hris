@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\GetDataController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,7 +42,15 @@ Route::post('/departements', [DepartementController::class, 'store'])->name('sto
 Route::put('/departements/{id}', [DepartementController::class, 'update'])->name('update_departement');
 Route::delete('/departements/{id}', [DepartementController::class, 'destroy'])->name('destroy_departement');
 
+// jobs
 
+Route::get('/jobs', [JobController::class, 'index'])->name('index_jobs');
+Route::post('/jobs', [JobController::class, 'store'])->name('store_job');
+Route::put('/jobs/{id}', [JobController::class, 'update'])->name('update_job');
+Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('destroy_job');
+
+//get data
+Route::get('/getJobs', [GetDataController::class, 'getDataJobs']);
 Route::get('/getDepartements', [GetDataController::class, 'getDataDepartements']);
 
 require __DIR__.'/auth.php';

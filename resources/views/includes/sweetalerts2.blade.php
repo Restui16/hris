@@ -38,6 +38,10 @@
 <script>
     function confirmDelete(e){
             let id = e.getAttribute('data-id');
+            let currentUrl = window.location.href;
+            let newUrl = currentUrl.replace('#', '')  
+            let urlId = newUrl + '/' + id;
+            console.log(urlId);
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -54,7 +58,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             type: 'Delete',
-                            url: '/departements/' + id,
+                            url: urlId,
                             dataType: "json",
                             success:function(response){
                                 Swal.fire({
@@ -67,7 +71,7 @@
                                     timerProgressBar: true,
                                     timer: 1000
                                 }).then((result) => {
-                                    window.location.href = '/departements';
+                                    window.location.href = newUrl;
                                 })
                             },
                             error: function(xhr, ajaxOptions, thrownError){

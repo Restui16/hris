@@ -20,8 +20,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="components-accordion.html">
-                        <i class="bi bi-circle"></i><span>Position</span>
+                    <a href="{{ route('index_jobs') }}">
+                        <i class="bi bi-circle"></i><span>Jobs</span>
                     </a>
                 </li>
                 <li>
