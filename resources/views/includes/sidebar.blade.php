@@ -15,8 +15,8 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('index_departements') }}">
-                        <i class="bi bi-circle"></i><span>Departements</span>
+                    <a href="{{ route('index_departments') }}">
+                        <i class="bi bi-circle"></i><span>Departments</span>
                     </a>
                 </li>
                 <li>

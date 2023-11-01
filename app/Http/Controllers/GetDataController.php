@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departement;
+use App\Models\Department;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -11,7 +11,7 @@ class GetDataController extends Controller
 {
     public function getDataDepartements()
     {
-        $departements = Departement::latest()->get();
+        $departements = Department::latest()->get();
         return DataTables::of($departements)
             ->addIndexColumn()
             ->addColumn('action', function ($departements) {

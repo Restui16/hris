@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GetDataController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -37,10 +37,10 @@ Route::middleware('auth')->group(function () {
 });
 
 // departements
-Route::get('/departements', [DepartementController::class, 'index'])->name('index_departements');
-Route::post('/departements', [DepartementController::class, 'store'])->name('store_departement');
-Route::put('/departements/{id}', [DepartementController::class, 'update'])->name('update_departement');
-Route::delete('/departements/{id}', [DepartementController::class, 'destroy'])->name('destroy_departement');
+Route::get('/departments', [DepartmentController::class, 'index'])->name('index_departments');
+Route::post('/departments', [DepartmentController::class, 'store'])->name('store_department');
+Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('update_department');
+Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('destroy_department');
 
 // jobs
 
