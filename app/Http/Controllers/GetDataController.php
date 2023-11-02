@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Employee;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables as DataTablesDataTables;
 use Yajra\DataTables\Facades\DataTables;
 
 class GetDataController extends Controller
@@ -46,6 +48,30 @@ class GetDataController extends Controller
                 ';
             })
             ->rawColumns(['action'])
+            ->make();
+    }
+
+    public function getDataEmployees(Request $request)
+    {
+        $employees = Employee::with(['Department', 'Job'])->latest()->get();
+        return DataTables::of($employees)
+            ->addIndexColumn()
+            ->addColumn('name', function($employee){
+                $name = $employee->first_name . ' ' . $employee->last_name; 
+                return '
+                    '.$name.'
+                ';
+            })
+            ->addColumn('action', function($employee){
+                $editUrl = route('edit.employee', $employee->id);
+                return'
+                    <div class="d-flex">
+                        <a href="'.$editUrl.'" class="btn btn-warning btn-sm me-2"> Edit </a>
+                        <a href="#" onclick="confirmDelete(this)" data-id="' . $employee->id . '" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                    ';
+            })
+            ->rawColumns(['name', 'action'])
             ->make();
     }
 }

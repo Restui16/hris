@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @include('includes.style')  
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title', 'HRIS')</title>
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    @include('includes.style')
 
-    </head>
-    <body class="">
-            @include('includes.header')
+    <title>@yield('title', 'HRIS')</title>
 
-            @include('includes.sidebar')
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-            @yield('content')
+</head>
 
-        @include('includes.script')
-        @include('includes.sweetalerts2')
+<body class="">
+    @include('includes.header')
 
-        @stack('scripts')
-    </body>
+    @include('includes.sidebar')
+
+    @yield('content')
+
+    @include('includes.script')
+    @include('includes.sweetalerts2')
+    @include('includes.select2')
+
+    @stack('scripts')
+</body>
+
 </html>

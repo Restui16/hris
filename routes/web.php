@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GetDataController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -43,14 +44,23 @@ Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('
 Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('destroy_department');
 
 // jobs
-
 Route::get('/jobs', [JobController::class, 'index'])->name('index_jobs');
 Route::post('/jobs', [JobController::class, 'store'])->name('store_job');
 Route::put('/jobs/{id}', [JobController::class, 'update'])->name('update_job');
 Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('destroy_job');
 
+//employees
+Route::get('/employees', [EmployeeController::class, 'index'])->name('index.employees');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('create.employee');
+Route::post('/employees', [EmployeeController::class, 'store'])->name('store.employee');
+Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit'])->name('edit.employee');
+Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('update.employee');
+Route::delete('/employees/{id}', [EmployeeController::class, 'destroy'])->name('destroy.employee');
+
 //get data
 Route::get('/getJobs', [GetDataController::class, 'getDataJobs']);
 Route::get('/getDepartements', [GetDataController::class, 'getDataDepartements']);
+Route::get('/getEmployees', [GetDataController::class, 'getDataEmployees']);
+
 
 require __DIR__.'/auth.php';

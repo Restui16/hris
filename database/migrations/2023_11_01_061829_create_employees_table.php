@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->string('nik_ktp')->unique();
+            $table->string('nip')->unique();
+            $table->foreignId('department_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('job_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('gender');
+            $table->string('religion');
+            $table->date('date_of_birth');
+            $table->string('phone_number', 15);
+            $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

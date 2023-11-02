@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'HRIS | Departements')
+@section('title', 'HRIS | Employees')
 
 @section('content')
 <main id="main" class="main">
@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Master Data</li>
-                <li class="breadcrumb-item active">Departments</li>
+                <li class="breadcrumb-item active">Employees</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,28 +23,31 @@
     <div class="card">
         <div class="card-header">
             <div class="col-lg-12 d-flex justify-content-between align-items-center">
-                <h1 class="fw-bold fs-3 text-black">Departments</h1>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDepartement"><span><i class="bi bi-plus-circle"></i></span> Create
-                    Department</button>
+                <h1 class="fw-bold fs-3 text-black">Employees</h1>
+                <a class="btn btn-primary" href="{{ route('create.employee')}}"><i class="bi bi-plus-circle me-2"></i>Create
+                    Employee</a>
             </div>
-            @include('departments.create-modal')
+            
 
         </div>
         <div class="card-body pt-3">
-            <table class="table table-responsive table-hover" style="width: 100%;" id="tableDepartements">
+            <table class="table table-responsive table-hover" style="width: 100%;" id="tableEmployees">
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nip</th>
+                        <th>Nik KTP</th>
                         <th>Name</th>
-                        <th>Created At</th>
-                        <th class="text-center">Action</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Job Title</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
         </div>
     </div>
 
-    @include('departments.edit-modal')
 </main><!-- End #main -->
 
 @push('scripts')
@@ -52,28 +55,48 @@
 
 
 <script>
-    $(document).ready(function() {
-            $('#tableDepartements').DataTable({
+   $(document).ready(function() {
+            $('#tableEmployees').DataTable({
+                scrollX: true,
                 processing: true,
-                serverside: true,
-                ajax: '/getDepartements/',
+                serverSide: true,
+                ajax: '/getEmployees/',
                 columns:[
                     {
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
+                        data: 'nip',
+                        name: 'nip',
+                    },
+                    {
+                        data: 'nik_ktp',
+                        name: 'nik_ktp',
+                    },
+                    {
                         data: 'name',
                         name: 'name'
                     },
                     {
-                        data: 'created_at',
-                        name: 'created_at'
+                        data: 'gender',
+                        name: 'gender',
+                        className: 'text-capitalize'
+                    },
+                    {
+                        data: 'department.name',
+                        name: 'department.name'
+                    },
+                    {
+                        data: 'job.job_title',
+                        name: 'job.job_title'
                     },
                     {
                         data: 'action',
                         name: 'action'
                     }
+                   
+                    
                 ]
             });
         });

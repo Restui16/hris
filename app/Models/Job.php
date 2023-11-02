@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Job extends Model
 {
@@ -13,4 +16,10 @@ class Job extends Model
         'job_title',
         'job_desc'
     ];
+
+    public function Employees(): HasMany
+    {
+        return $this->hasMany(Employee::class);
+    }
+   
 }
